@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -9,12 +9,16 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <div>
-        <h1>Weather Forecast</h1>
-        <input type="text" id="city" placeholder="Entrez une ville">
-        <button id="getWeather">Get the weather</button>
-        <div id="weatherResult"></div>
-        <div id="map" style="height: 400px; width: 100%;"></div>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Weather Forecast</h1>
+            <input type="text" id="city" placeholder="Entrez une ville">
+            <button id="getWeather">Get the weather</button>
+            <div id="weatherResult"></div>
+        </div>
+        <div class="right-panel">
+            <div id="map"></div>
+        </div>
     </div>
     <script src="src/js/script.js"></script>
 </body>

@@ -1,9 +1,10 @@
 let map;
 
 function initMap(lat, lon) {
+    console.log(`Initializing map at coordinates: ${lat}, ${lon}`);
     const location = [lat, lon];
     if (!map) {
-        // Initialize the map only once with a higher zoom level
+        // Initialize the map only once
         map = L.map('map').setView(location, 12);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,7 +12,7 @@ function initMap(lat, lon) {
             attribution: '© OpenStreetMap'
         }).addTo(map);
     } else {
-        // Update the map view and marker for subsequent requests
+        // Update the map view for subsequent requests
         map.setView(location, 12);
     }
 
@@ -48,17 +49,20 @@ async function fetchWeatherData() {
             body: JSON.stringify({ city }),
         });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
         const weatherResult = document.getElementById('weatherResult');
-        if (response.ok) {
-            weatherResult.innerHTML = `<h2>${data.name}</h2>
-                                        <p>${data.weather[0].description}</p>
-                                        <p>Température: ${data.main.temp} °C</p>`;
-            console.log('Coordinates:', data.coord.lat, data.coord.lon);
-            initMap(data.coord.lat, data.coord.lon);
-        } else {
-            weatherResult.innerHTML = `<p>${data.error}</p>`;
-        }
+        weatherResult.innerHTML = `<h2>${data.name}</h2>
+                                   <p>${data.weather[0].description}</p>
+                                   <p>Température: ${data.main.temp} °C</p>`;
+        console.log('Coordinates:', data.coord.lat, data.coord.lon);
+        initMap(data.coord.lat, data.coord.lon);
+
+        // Ajoutez la classe pour afficher le box-shadow
+        document.getElementById('map').classList.add('visible');
     } catch (error) {
         console.error('Error fetching weather data:', error);
         document.getElementById('weatherResult').innerHTML = `<p>Une erreur s'est produite lors de la récupération des données.</p>`;
