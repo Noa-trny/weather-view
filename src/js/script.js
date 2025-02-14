@@ -25,7 +25,20 @@ function initMap(lat, lon) {
 }
 
 document.getElementById('getWeather').addEventListener('click', async () => {
-    const city = document.getElementById('city').value;
+    fetchWeatherData();
+});
+
+const searchInput = document.getElementById("city"); // Assurez-vous que l'ID correspond à votre champ de recherche
+
+searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Empêche le comportement par défaut
+        fetchWeatherData();
+    }
+});
+
+async function fetchWeatherData() {
+    const city = searchInput.value;
     try {
         const response = await fetch('/api/weather', {
             method: 'POST',
@@ -50,4 +63,4 @@ document.getElementById('getWeather').addEventListener('click', async () => {
         console.error('Error fetching weather data:', error);
         document.getElementById('weatherResult').innerHTML = `<p>Une erreur s'est produite lors de la récupération des données.</p>`;
     }
-});
+}

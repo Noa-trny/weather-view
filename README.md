@@ -1,5 +1,7 @@
 # WeatherView
 
+- <img src="src/assets/logo_weather-view.png" alt="Logo" width="200" />
+
 WeatherView is a simple web application that allows users to get the current weather information for any city. The application uses the OpenWeatherMap API to fetch weather data and displays it on a map using OpenStreetMap.
 
 ## Features
@@ -23,7 +25,7 @@ WeatherView is a simple web application that allows users to get the current wea
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/weather-view.git
+   git clone https://github.com/noa-trny/weather-view.git
    cd weather-view
    ```
 
