@@ -2,14 +2,26 @@ let map;
 
 function initMap(lat, lon) {
     const location = [lat, lon];
-    map = L.map('map').setView(location, 10);
+    if (!map) {
+        // Initialize the map only once with a higher zoom level
+        map = L.map('map').setView(location, 12);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+    } else {
+        // Update the map view and marker for subsequent requests
+        map.setView(location, 12);
+    }
 
-    L.marker(location).addTo(map);
+    // Remove existing markers before adding a new one
+    if (map.marker) {
+        map.removeLayer(map.marker);
+    }
+
+    // Add a new marker
+    map.marker = L.marker(location).addTo(map);
 }
 
 document.getElementById('getWeather').addEventListener('click', async () => {
