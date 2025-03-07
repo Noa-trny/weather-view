@@ -34,19 +34,14 @@ WeatherView is a simple web application that allows users to get the current wea
    npm install
    ```
 
-3. Create a `.env` file in the root directory and add your OpenWeatherMap API key:
 
-   ```plaintext
-   API_KEY=your_openweathermap_api_key
-   ```
-
-4. Start the server:
+3. Start the server:
 
    ```bash
    npm start
    ```
 
-5. Open your browser and navigate to `http://localhost:3000` to view the application.
+4. Open your browser and navigate to `http://localhost:3000` to view the application.
 
 ## Usage
 
