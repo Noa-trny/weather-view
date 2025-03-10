@@ -79,7 +79,7 @@ async function fetchWeatherData() {
 }
 
 async function fetchForecast(city) {
-    const apiKey = '83c6690fffdef4e22ac9eb9d27b47431';
+    const apiKey = ''; // entrer votre clé d'api openweather 
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`);
     const data = await response.json();
 
